@@ -40,7 +40,7 @@
             });
             
             amplify.subscribe('active.onFocus', function(path){
-                $('.svg_color').remove();
+                $('.ace_gutter-cell').css('background-color', '');
                 if (_this.isAtEnd(path, '.css')) {
                     _this.updateGutter();
                 }
@@ -86,7 +86,7 @@
         },
 
         updateGutter: function() {
-            $('.svg_color').remove();
+            $('.ace_gutter-cell').css('background-color', '');
             var editor  = codiad.editor.getActive();
             var content = codiad.editor.getContent().split("\n");
             var start   = editor.getFirstVisibleRow();
@@ -105,7 +105,7 @@
                         endPos = content[i].indexOf(";");
                         value = content[i].substring(startPos + 1, endPos);
                         element = $('.ace_gutter-cell')[i-start];
-                        $(element).prepend('<svg class="svg_color" width="10" height="10" xmlns="http://www.w3.org/2000/svg"><circle fill="'+value+'" stroke="#ffffff" cx="5" cy="5" r="4.9"/></svg>');
+                        $(element).css('background-color', value);
                     }
                 }
             }
